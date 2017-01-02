@@ -1,0 +1,8 @@
+.project
+.settings
+/resume-online-core/.classpath
+/resume-online-entity/.classpath
+/sonar-codereview-chart/.classpath
+/sonar-codereview-commons/.classpath
+/sonar-codereview-core/.classpath
+/sonar-codereview-report/.classpath
