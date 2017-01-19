@@ -18,6 +18,7 @@ public class SonarReportServiceImp
     SonarReportService {
 
     private final JasperReportPDFService jasperReportPDFService;
+    private JasperReportService jasperReportService;
 
     public SonarReportServiceImp(
         final JasperReportPDFService jasperReportPDFService) {

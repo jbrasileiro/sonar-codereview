@@ -95,7 +95,11 @@ public class SonarIndividualReportServiceImp
         }
         Collections.sort(result, getComparator());
         Collections.reverse(result);
-        return result.subList(0, TOP);
+        if(result.size() < TOP){
+            return result.subList(0, result.size());
+        }else{
+            return result.subList(0, TOP);
+        }
     }
 
     private Comparator<IssueOccurrences> getComparator() {
