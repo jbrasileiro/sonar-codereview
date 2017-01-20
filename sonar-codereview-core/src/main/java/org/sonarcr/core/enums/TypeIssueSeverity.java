@@ -1,17 +1,17 @@
 /*
- * GNU GENERAL PUBLIC LICENSE
- * Version 3, 29 June 2007
- *
- * Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- * Everyone is permitted to copy and distribute verbatim copies
- * of this license document, but changing it is not allowed.
- * 
+ * GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free
+ * Software Foundation, Inc. <http://fsf.org/> Everyone is permitted to copy and
+ * distribute verbatim copies of this license document, but changing it is not
+ * allowed.
  */
 package org.sonarcr.core.enums;
 
+import org.sonarcr.commons.beans.EnumCodeMessageCatalogable;
 import org.sonarcr.core.constants.TypeIssueSeverityConstant;
 
-public enum TypeIssueSeverity {
+public enum TypeIssueSeverity
+    implements
+    EnumCodeMessageCatalogable<Integer> {
         BLOCKER(TypeIssueSeverityConstant.NAME_BLOCKER,
             TypeIssueSeverityConstant.LEVEL_BLOCKER),
         CRITICAL(TypeIssueSeverityConstant.NAME_CRITICAL,
@@ -33,12 +33,20 @@ public enum TypeIssueSeverity {
         this.severity = severity;
     }
 
+    /* (non-Javadoc)
+     * @see org.sonarcr.commons.beans.CodeCatalogable#getCode()
+     */
+    @Override
+    public Integer getCode() {
+        return severity;
+    }
+
+    @Override
     public String getMeaning() {
         return meaning;
     }
 
     public int getSeverity() {
-        return severity;
+        return getCode();
     }
-
 }

@@ -1,11 +1,8 @@
 /*
- * GNU GENERAL PUBLIC LICENSE
- * Version 3, 29 June 2007
- *
- * Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- * Everyone is permitted to copy and distribute verbatim copies
- * of this license document, but changing it is not allowed.
- * 
+ * GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free
+ * Software Foundation, Inc. <http://fsf.org/> Everyone is permitted to copy and
+ * distribute verbatim copies of this license document, but changing it is not
+ * allowed.
  */
 package org.sonarcr.commons.resources;
 
@@ -23,8 +20,7 @@ public class ResourceLoader {
         final String directory,
         final String name) {
         final String file = directory.concat(name);
-        final InputStream resource
-            = clazz.getClassLoader().getResourceAsStream(file);
+        final InputStream resource = clazz.getClassLoader().getResourceAsStream(file);
         if (resource == null) {
             throw new IllegalArgumentException(file.concat(" not found."));
         } else {
@@ -61,4 +57,5 @@ public class ResourceLoader {
         directory.mkdirs();
         return new File(directory.getPath(), name);
     }
+
 }

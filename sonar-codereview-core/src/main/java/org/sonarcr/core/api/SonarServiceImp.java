@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.sonar.wsclient.issue.Issue;
+import org.sonarcr.commons.util.ObjectsUtils;
 import org.sonarcr.core.beans.ProjectIssue;
 import org.sonarcr.core.beans.SonarProject;
 import org.sonarcr.core.beans.SonarProjectDetail;
@@ -35,6 +36,8 @@ public class SonarServiceImp
     public SonarProject getSonarProject(
         final String url,
         final String artifactId) {
+        ObjectsUtils.required(url);
+        ObjectsUtils.required(artifactId);
         final ProjectIssue issue = new ProjectIssue();
         issue.setBlocker(queryBlocker(url, artifactId));
         issue.setCritical(queryCritical(url, artifactId));

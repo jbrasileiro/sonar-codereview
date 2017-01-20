@@ -13,16 +13,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.sonarcr.commons.util.ToStringUtils;
+import org.sonarcr.core.enums.TypeIssueSeverity;
 
 public class IssueOccurrences {
 
+    private final TypeIssueSeverity type;
     private final String name;
     private final Integer occurences;
 
     public IssueOccurrences(
+        final TypeIssueSeverity type,
         final String name,
         final Integer occurences) {
         super();
+        this.type = type;
         this.name = name;
         this.occurences = occurences;
     }
@@ -42,5 +46,12 @@ public class IssueOccurrences {
         map.put("occurences", occurences);
         map.put("name", name);
         return ToStringUtils.toStringWith(this, map);
+    }
+
+    /**
+     * @return
+     */
+    public TypeIssueSeverity getSeverity() {
+        return type;
     }
 }

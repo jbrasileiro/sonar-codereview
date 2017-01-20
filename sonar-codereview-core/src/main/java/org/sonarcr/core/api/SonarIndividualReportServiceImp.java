@@ -17,27 +17,35 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.sonar.wsclient.issue.Issue;
 import org.sonarcr.commons.comparator.CommonsComparator;
+import org.sonarcr.commons.resources.ResourceLoader;
+import org.sonarcr.commons.util.EnumsUtils;
+import org.sonarcr.commons.util.MapsUtils;
 import org.sonarcr.core.beans.IssueOccurrences;
 import org.sonarcr.core.beans.IssueOccurrencesComparator;
 import org.sonarcr.core.beans.ProjectIssue;
 import org.sonarcr.core.beans.SonarProject;
+import org.sonarcr.core.enums.TypeIssueSeverity;
+import org.sonarcr.core.vo.IssueOccurrenceVO;
+import org.sonarcr.report.JasperCompiler;
 import org.sonarcr.report.SonarReportService;
 import org.sonarcr.report.beans.CodeReviewSingleReport;
 import org.sonarcr.report.beans.IssueReport;
 import org.sonarcr.report.beans.ReportCodeReviewParameter;
-
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class SonarIndividualReportServiceImp
     implements
     SonarIndividualReportService {
 
     private static final int TOP = 10;
+    private static String BLOCKER = "img-blocker_80x64.png";
+    private static String CRITICAL = "img-blocker_80x64.png";
+    private static String MAJOR = "img-blocker_80x64.png";
+    private static String MINOR = "img-blocker_80x64.png";
+    private static String INFO = "img-blocker_80x64.png";
+    
     private final SonarReportService report;
     private final SonarService sonarService;
 
@@ -73,7 +81,7 @@ public class SonarIndividualReportServiceImp
         return true;
     }
 
-    private JRDataSource toTopIssues(
+    private List<IssueReport> toTopIssues(
         final int limit,
         final List<Issue> issues) {
         final List<IssueOccurrences> ordenedIssues = to(issues);
@@ -82,25 +90,52 @@ public class SonarIndividualReportServiceImp
             final IssueReport bean = new IssueReport();
             bean.setIssueName(issue.getName());
             bean.setOccurrences(issue.getOccurences());
+            bean.setIconPath(getIconPath(issue.getSeverity()));
             result.add(bean);
         }
-        return new JRBeanCollectionDataSource(result, false);
+        return result;
+    }
+
+    /**
+     * @param type 
+     * @return
+     */
+    private String getIconPath(final TypeIssueSeverity type) {
+        Map<TypeIssueSeverity, String> map = MapsUtils.getConcurrentHashMap();
+        map.put(TypeIssueSeverity.BLOCKER, getIconPath(BLOCKER));
+        map.put(TypeIssueSeverity.CRITICAL, getIconPath(CRITICAL));
+        map.put(TypeIssueSeverity.MAJOR, getIconPath(MAJOR));
+        map.put(TypeIssueSeverity.MINOR, getIconPath(MINOR));
+        map.put(TypeIssueSeverity.INFO, getIconPath(INFO));
+        return MapsUtils.getType(map, type);
+    }
+
+    private String getIconPath(
+        final String name) {
+        return ResourceLoader.loadFrom(JasperCompiler.class, "/", name).getPath();
     }
 
     private List<IssueOccurrences> to(
         final List<Issue> issues) {
         final List<IssueOccurrences> result = new ArrayList<>();
-        final Map<String, Integer> map = new HashMap<>();
+        final Map<String, IssueOccurrenceVO> map = new HashMap<>();
         for (final Issue issue : issues) {
             final String key = key(issue);
             if (map.containsKey(key)) {
-                map.put(key, map.get(key) + 1);
+                IssueOccurrenceVO vo = map.get(key);
+                vo.increase();
             } else {
-                map.put(key, 1);
+                String name = issue.message();
+                TypeIssueSeverity[] enums = TypeIssueSeverity.values();
+                TypeIssueSeverity severity = EnumsUtils.valueOfMeaning(enums, issue.severity());
+                map.put(key, new IssueOccurrenceVO(name, severity, 1));
             }
         }
-        for (final Entry<String, Integer> entry : map.entrySet()) {
-            result.add(new IssueOccurrences(entry.getKey(), entry.getValue()));
+        for (final IssueOccurrenceVO entry : map.values()) {
+            String key = entry.getName();
+            TypeIssueSeverity type = entry.getSeverity();
+            Integer value = entry.getOccurrence();
+            result.add(new IssueOccurrences(type, key, value));
         }
         Collections.sort(result, getComparator());
         Collections.reverse(result);

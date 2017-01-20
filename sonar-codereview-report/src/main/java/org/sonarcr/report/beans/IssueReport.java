@@ -13,6 +13,8 @@ public class IssueReport {
 
     private String issueName;
     private Integer occurrences;
+    private String iconPath;
+    
 
     public IssueReport() {
         super();
@@ -34,5 +36,14 @@ public class IssueReport {
     public void setOccurrences(
         final Integer occurrences) {
         this.occurrences = occurrences;
+    }
+    
+    public String getIconPath() {
+        return iconPath;
+    }
+    
+    public void setIconPath(
+        final String iconPath) {
+        this.iconPath = iconPath;
     }
 }

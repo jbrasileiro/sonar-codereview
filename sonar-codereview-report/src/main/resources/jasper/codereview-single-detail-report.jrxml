@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2016-12-28T17:25:09 -->
+<!-- 2017-01-20T15:44:52 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="codereview-single-detail-report" pageWidth="582" pageHeight="595" columnWidth="582" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8257441d-e5e1-4c84-b781-a304212e5fa8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -16,11 +16,12 @@
 	<field name="occurrences" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="iconPath" class="java.lang.String"/>
 	<columnHeader>
 		<band height="32" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<staticText>
-				<reportElement x="50" y="1" width="532" height="30" uuid="c003770e-221a-419e-8b0e-ee155d5f8e36"/>
+				<reportElement x="80" y="1" width="502" height="30" uuid="c003770e-221a-419e-8b0e-ee155d5f8e36"/>
 				<box>
 					<pen lineWidth="1.0"/>
 				</box>
@@ -43,6 +44,7 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField>
 				<reportElement x="0" y="0" width="50" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8765d659-97cd-46c1-aa1c-66e2a4b17a22"/>
 				<box padding="1">
@@ -54,7 +56,7 @@
 				<textFieldExpression><![CDATA[$F{occurrences}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="0" width="532" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="bb386707-0e5d-4c87-a27d-362d65b40581"/>
+				<reportElement x="80" y="0" width="502" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="bb386707-0e5d-4c87-a27d-362d65b40581"/>
 				<box padding="1">
 					<pen lineWidth="0.0"/>
 				</box>
@@ -63,6 +65,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{issueName}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle" onErrorType="Icon">
+				<reportElement x="50" y="0" width="30" height="20" uuid="76dc6eb9-8da0-43cc-ac6a-f6cfd87dc076"/>
+				<imageExpression><![CDATA[$F{iconPath}]]></imageExpression>
+			</image>
 		</band>
 		<band height="2">
 			<line>

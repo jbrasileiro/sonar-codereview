@@ -27,7 +27,6 @@ public class SonarReportServiceImp
     SonarReportService {
 
     private final JasperReportPDFService jasperReportPDFService;
-    private JasperReportService jasperReportService;
 
     public SonarReportServiceImp(
         final JasperReportPDFService jasperReportPDFService) {
@@ -53,7 +52,7 @@ public class SonarReportServiceImp
         }
         final Map<String, Object> parameters = getParameter(parameter);
         final File jrxmlFile = getJRXMLFile("codereview-single-report.jrxml");
-        final String name = "codereview".concat(artifactId).concat("-report.pdf");
+        final String name = "cr-report-".concat(artifactId).concat(".pdf");
         final String path = directory.getPath().concat("//").concat(name);
         final JRDataSource dataSource = new JRBeanCollectionDataSource(beans);
         final JasperPrinter printer = new JasperPrinterImp(parameters, dataSource);

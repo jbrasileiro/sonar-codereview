@@ -9,7 +9,10 @@
  */
 package org.sonarcr.report.beans;
 
+import java.util.List;
+
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class CodeReviewSingleReport {
 
@@ -114,8 +117,8 @@ public class CodeReviewSingleReport {
     }
 
     public void setTopIssues(
-        final JRDataSource topIssues) {
-        this.topIssues = topIssues;
+        final List<IssueReport> topIssues) {
+        this.topIssues = new JRBeanCollectionDataSource(topIssues, false);
     }
 
 }
