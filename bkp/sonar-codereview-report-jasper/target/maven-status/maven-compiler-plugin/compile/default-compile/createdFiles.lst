@@ -1,0 +1,16 @@
+org\sonarcr\report\jasper\SonarReportServiceImp.class
+org\sonarcr\report\jasper\JasperReportServiceImp.class
+org\sonarcr\report\jasper\JasperPrinterImp.class
+org\sonarcr\report\jasper\JasperCompilerImp.class
+org\sonarcr\report\jasper\JasperExporterToPDF.class
+org\sonarcr\report\jasper\JasperReportPDFService.class
+org\sonarcr\report\jasper\JasperReportPDFServiceImp.class
+org\sonarcr\report\jasper\JasperReportService.class
+org\sonarcr\report\jasper\exception\SonarGeneratorReportException.class
+org\sonarcr\report\jasper\JasperCompiler.class
+org\sonarcr\report\jasper\JasperExporter.class
+org\sonarcr\report\jasper\SonarReportService.class
+org\sonarcr\report\jasper\JasperCompilerLocal.class
+org\sonarcr\report\jasper\JasperPrinter.class
+org\sonarcr\report\jasper\utils\JasperCompilerUtils.class
+org\sonarcr\report\jasper\jasper\CodeReviewSingleJasperReport.class

@@ -1,0 +1,7 @@
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\beans\ReportCodeReviewParameter.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\exception\package-info.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\commons\ReportResourceLoader.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\beans\package-info.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\beans\CodeReviewSingleReport.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\beans\IssueReport.java
+C:\.dev\git\P\sonar-codereview\sonar-codereview-report-commons\src\main\java\org\sonarcr\report\commons\exception\SonarCompilerReportException.java

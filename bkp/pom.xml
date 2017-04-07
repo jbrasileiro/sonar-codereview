@@ -6,11 +6,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.com.nullpointer.4j</groupId>
 	<artifactId>sonar-codereview</artifactId>
-	<version>${project.sonar.version}</version>
+	<version>1.1.452</version>
 	<packaging>pom</packaging>
 	<description>SONAR core review reporter</description>
+	<modules>
+		<module>sonar-codereview-commons</module>
+		<module>sonar-codereview-chart</module>
+		<module>sonar-codereview-core</module>
+		<module>sonar-codereview-report-commons</module>
+		<module>sonar-codereview-report-dynamic</module>
+		<module>sonar-codereview-report-jasper</module>
+		<module>sonar-codereview-test-integration</module>
+	</modules>
 	<properties>
-		<project.sonar.version>1.1.452</project.sonar.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version-java-source>1.7</version-java-source>
 		<version-java-target>1.7</version-java-target>
@@ -26,20 +34,61 @@
 		<version-org.mockito.mockito-all>1.10.19</version-org.mockito.mockito-all>
 		<version.commons-lang-3>3.5</version.commons-lang-3>
 	</properties>
-	<modules>
-		<module>common-SE-CDI</module>
-		<module>sonar-codereview-jar</module>
-	</modules>
 	<dependencyManagement>
 		<dependencies>
 			<!-- MODULES -->
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-chart</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-report-commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-report-jasper</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<!-- PROVIDED -->
 			<!-- COMPILE -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.commons-lang-3}</version>
+			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.codehaus.sonar/sonar-ws-client -->
 			<dependency>
 				<groupId>org.codehaus.sonar</groupId>
 				<artifactId>sonar-ws-client</artifactId>
 				<version>4.5.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>1.0.19</version>
+			</dependency>
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>2.1.7</version>
 			</dependency>
 			<!-- TEST -->
 			<dependency>

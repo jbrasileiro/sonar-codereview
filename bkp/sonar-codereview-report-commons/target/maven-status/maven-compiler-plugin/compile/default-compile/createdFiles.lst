@@ -1,0 +1,5 @@
+org\sonarcr\report\commons\beans\ReportCodeReviewParameter.class
+org\sonarcr\report\commons\exception\SonarCompilerReportException.class
+org\sonarcr\report\commons\commons\ReportResourceLoader.class
+org\sonarcr\report\commons\beans\CodeReviewSingleReport.class
+org\sonarcr\report\commons\beans\IssueReport.class
