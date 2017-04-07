@@ -19,7 +19,7 @@ public class ResourceLoader {
         final Class<?> clazz,
         final String directory,
         final String name) {
-        final String file = directory.concat(name);
+        final String file = directory.concat("\\").concat(name);
         final InputStream resource = clazz.getClassLoader().getResourceAsStream(file);
         if (resource == null) {
             throw new IllegalArgumentException(file.concat(" not found."));

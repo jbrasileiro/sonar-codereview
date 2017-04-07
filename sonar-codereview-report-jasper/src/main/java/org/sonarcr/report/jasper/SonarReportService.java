@@ -7,17 +7,20 @@
  * of this license document, but changing it is not allowed.
  * 
  */
-package org.sonarcr.core.api;
+package org.sonarcr.report.jasper;
 
 import java.io.File;
+import java.util.Collection;
 
+import org.sonarcr.report.commons.beans.CodeReviewSingleReport;
 import org.sonarcr.report.commons.beans.ReportCodeReviewParameter;
 
-public interface SonarIndividualReportService {
+public interface SonarReportService {
 
-    boolean generateReport(
-        String url,
+    void reportCodeReview(
         String artifactId,
+        Collection<CodeReviewSingleReport> beans,
         ReportCodeReviewParameter parameter,
         File directory);
+
 }

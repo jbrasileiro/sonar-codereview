@@ -12,8 +12,11 @@
 	<modules>
 		<module>sonar-codereview-commons</module>
 		<module>sonar-codereview-chart</module>
-		<module>sonar-codereview-report</module>
 		<module>sonar-codereview-core</module>
+		<module>sonar-codereview-report-commons</module>
+		<module>sonar-codereview-report-dynamic</module>
+		<module>sonar-codereview-report-jasper</module>
+		<module>sonar-codereview-test-integration</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,7 +54,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.com.nullpointer.4j</groupId>
-				<artifactId>sonar-codereview-report</artifactId>
+				<artifactId>sonar-codereview-report-commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.com.nullpointer.4j</groupId>
+				<artifactId>sonar-codereview-report-jasper</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<!-- PROVIDED -->
@@ -76,11 +84,6 @@
 				<groupId>org.jfree</groupId>
 				<artifactId>jfreechart</artifactId>
 				<version>1.0.19</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sf.jasperreports</groupId>
-				<artifactId>jasperreports</artifactId>
-				<version>6.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lowagie</groupId>

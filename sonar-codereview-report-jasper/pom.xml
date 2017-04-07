@@ -9,31 +9,21 @@
 		<artifactId>sonar-codereview</artifactId>
 		<version>1.1.452</version>
 	</parent>
-	<artifactId>sonar-codereview-core</artifactId>
+	<artifactId>sonar-codereview-report-jasper</artifactId>
 	<dependencies>
-		<dependency>
-			<groupId>org.com.nullpointer.4j</groupId>
-			<artifactId>sonar-codereview-commons</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.com.nullpointer.4j</groupId>
-			<artifactId>sonar-codereview-chart</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.com.nullpointer.4j</groupId>
 			<artifactId>sonar-codereview-report-commons</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.com.nullpointer.4j</groupId>
-			<artifactId>sonar-codereview-report-jasper</artifactId>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.sonar</groupId>
-			<artifactId>sonar-ws-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>

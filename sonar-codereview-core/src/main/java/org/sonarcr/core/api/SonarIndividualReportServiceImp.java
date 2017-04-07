@@ -20,7 +20,6 @@ import java.util.Map;
 
 import org.sonar.wsclient.issue.Issue;
 import org.sonarcr.commons.comparator.CommonsComparator;
-import org.sonarcr.commons.resources.ResourceLoader;
 import org.sonarcr.commons.util.EnumsUtils;
 import org.sonarcr.commons.util.MapsUtils;
 import org.sonarcr.core.beans.IssueOccurrences;
@@ -29,11 +28,11 @@ import org.sonarcr.core.beans.ProjectIssue;
 import org.sonarcr.core.beans.SonarProject;
 import org.sonarcr.core.enums.TypeIssueSeverity;
 import org.sonarcr.core.vo.IssueOccurrenceVO;
-import org.sonarcr.report.JasperCompiler;
-import org.sonarcr.report.SonarReportService;
-import org.sonarcr.report.beans.CodeReviewSingleReport;
-import org.sonarcr.report.beans.IssueReport;
-import org.sonarcr.report.beans.ReportCodeReviewParameter;
+import org.sonarcr.report.commons.beans.CodeReviewSingleReport;
+import org.sonarcr.report.commons.beans.IssueReport;
+import org.sonarcr.report.commons.beans.ReportCodeReviewParameter;
+import org.sonarcr.report.commons.commons.ReportResourceLoader;
+import org.sonarcr.report.jasper.SonarReportService;
 
 public class SonarIndividualReportServiceImp
     implements
@@ -46,7 +45,7 @@ public class SonarIndividualReportServiceImp
     private static String MINOR = "img-blocker_80x64.png";
     private static String INFO = "img-blocker_80x64.png";
     
-    private final SonarReportService report;
+    private final SonarReportService jasperReport;
     private final SonarService sonarService;
 
     public SonarIndividualReportServiceImp(
@@ -54,7 +53,7 @@ public class SonarIndividualReportServiceImp
         final SonarReportService report) {
         super();
         this.sonarService = sonarService;
-        this.report = report;
+        this.jasperReport = report;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class SonarIndividualReportServiceImp
         bean.setTotalInfo(issues.getInfo().size());
         bean.setTopIssues(toTopIssues(TOP, new ArrayList<>(issues.getAllIssues())));
         beans.add(bean);
-        report.reportCodeReview(artifactId, beans, parameter, directory);
+        jasperReport.reportCodeReview(artifactId, beans, parameter, directory);
         return true;
     }
 
@@ -96,10 +95,6 @@ public class SonarIndividualReportServiceImp
         return result;
     }
 
-    /**
-     * @param type 
-     * @return
-     */
     private String getIconPath(final TypeIssueSeverity type) {
         Map<TypeIssueSeverity, String> map = MapsUtils.getConcurrentHashMap();
         map.put(TypeIssueSeverity.BLOCKER, getIconPath(BLOCKER));
@@ -112,7 +107,7 @@ public class SonarIndividualReportServiceImp
 
     private String getIconPath(
         final String name) {
-        return ResourceLoader.loadFrom(JasperCompiler.class, "/", name).getPath();
+        return ReportResourceLoader.loadFrom("\\img", name).getPath();
     }
 
     private List<IssueOccurrences> to(

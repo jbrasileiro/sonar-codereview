@@ -7,17 +7,15 @@
  * of this license document, but changing it is not allowed.
  * 
  */
-package org.sonarcr.core.api;
+package org.sonarcr.report.jasper;
 
 import java.io.File;
 
-import org.sonarcr.report.commons.beans.ReportCodeReviewParameter;
+import net.sf.jasperreports.engine.JasperPrint;
 
-public interface SonarIndividualReportService {
+public interface JasperExporter {
 
-    boolean generateReport(
-        String url,
-        String artifactId,
-        ReportCodeReviewParameter parameter,
-        File directory);
+    void export(
+        JasperPrint jasperPrint,
+        File output);
 }

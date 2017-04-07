@@ -7,17 +7,14 @@
  * of this license document, but changing it is not allowed.
  * 
  */
-package org.sonarcr.core.api;
+package org.sonarcr.report.jasper.utils;
 
 import java.io.File;
 
-import org.sonarcr.report.commons.beans.ReportCodeReviewParameter;
+public final class JasperCompilerUtils {
 
-public interface SonarIndividualReportService {
-
-    boolean generateReport(
-        String url,
-        String artifactId,
-        ReportCodeReviewParameter parameter,
-        File directory);
+    public static File getJasperDirectory() {
+        final String directory = System.getProperties().getProperty("user.home");
+        return new File(directory.concat("/jrs/jasper"));
+    }
 }
