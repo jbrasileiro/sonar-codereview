@@ -1,0 +1,6 @@
+org\sonarcr\chart\BarChartParameterImp.class
+org\sonarcr\chart\JChartGeneratorService.class
+org\sonarcr\chart\BarChartCategory.class
+org\sonarcr\chart\BarChartParameter.class
+org\sonarcr\chart\BarChartCategoryImp.class
+org\sonarcr\chart\JChartGeneratorServiceImp.class

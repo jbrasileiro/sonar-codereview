@@ -5,7 +5,7 @@
  * Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
- * 
+ *
  */
 package org.sonarcr.core.api;
 
@@ -80,9 +80,10 @@ public final class SonarWebServiceImp
             }
             query.statuses(values.toArray(new String[] {}));
         }
+        query.pageSize(500);
         return query;
     }
-    
+
     public SonarProjectDetail getSonarProjectDetail(final String url, final String artifactId){
         final Resource resource = call(url, artifactId);
         final SonarProjectDetail result = new SonarProjectDetail();

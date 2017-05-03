@@ -5,7 +5,7 @@
  * Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
- * 
+ *
  */
 package org.sonarcr.core.api;
 
@@ -38,13 +38,13 @@ public class SonarIndividualReportServiceImp
     implements
     SonarIndividualReportService {
 
-    private static final int TOP = 10;
+    private static final int TOP = 1000;
     private static String BLOCKER = "img-blocker_80x64.png";
     private static String CRITICAL = "img-blocker_80x64.png";
     private static String MAJOR = "img-blocker_80x64.png";
     private static String MINOR = "img-blocker_80x64.png";
     private static String INFO = "img-blocker_80x64.png";
-    
+
     private final SonarReportService jasperReport;
     private final SonarService sonarService;
 
@@ -53,7 +53,7 @@ public class SonarIndividualReportServiceImp
         final SonarReportService report) {
         super();
         this.sonarService = sonarService;
-        this.jasperReport = report;
+        jasperReport = report;
     }
 
     @Override
@@ -76,6 +76,10 @@ public class SonarIndividualReportServiceImp
         bean.setTotalInfo(issues.getInfo().size());
         bean.setTopIssues(toTopIssues(TOP, new ArrayList<>(issues.getAllIssues())));
         beans.add(bean);
+        //FIXME
+        for (IssueReport issue : bean.getTopIssues()) {
+            System.err.println(issue);
+        }
         jasperReport.reportCodeReview(artifactId, beans, parameter, directory);
         return true;
     }
@@ -83,7 +87,7 @@ public class SonarIndividualReportServiceImp
     private List<IssueReport> toTopIssues(
         final int limit,
         final List<Issue> issues) {
-        final List<IssueOccurrences> ordenedIssues = to(issues);
+        final List<IssueOccurrences> ordenedIssues = to(limit, issues);
         final List<IssueReport> result = new ArrayList<>();
         for (final IssueOccurrences issue : ordenedIssues) {
             final IssueReport bean = new IssueReport();
@@ -111,6 +115,7 @@ public class SonarIndividualReportServiceImp
     }
 
     private List<IssueOccurrences> to(
+        final int limit,
         final List<Issue> issues) {
         final List<IssueOccurrences> result = new ArrayList<>();
         final Map<String, IssueOccurrenceVO> map = new HashMap<>();
@@ -134,10 +139,10 @@ public class SonarIndividualReportServiceImp
         }
         Collections.sort(result, getComparator());
         Collections.reverse(result);
-        if(result.size() < TOP){
+        if(result.size() < limit){
             return result.subList(0, result.size());
         }else{
-            return result.subList(0, TOP);
+            return result.subList(0, limit);
         }
     }
 

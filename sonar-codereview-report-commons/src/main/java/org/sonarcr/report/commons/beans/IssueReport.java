@@ -5,7 +5,7 @@
  * Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
- * 
+ *
  */
 package org.sonarcr.report.commons.beans;
 
@@ -14,7 +14,7 @@ public class IssueReport {
     private String issueName;
     private Integer occurrences;
     private String iconPath;
-    
+
 
     public IssueReport() {
         super();
@@ -37,13 +37,18 @@ public class IssueReport {
         final Integer occurrences) {
         this.occurrences = occurrences;
     }
-    
+
     public String getIconPath() {
         return iconPath;
     }
-    
+
     public void setIconPath(
         final String iconPath) {
         this.iconPath = iconPath;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%05d] - %s", occurrences, issueName);
     }
 }
